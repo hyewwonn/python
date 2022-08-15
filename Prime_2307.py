@@ -1,19 +1,20 @@
-#2307 양혜원
 print("1 ~ N  까지의 소수와 그 갯수를 구하는 프로그램")
-num = int(input("N 입력 : "))
+n = int(input("N 입력 : "))
 
-def isPrimeNumber(num):
-    cnt = 0
-    li = []
-    for i in range(2, num):
-        if num % i == 0:
-            cnt = 1
-            break
+def isPrimeNumber(n):
+    res = []
+    for i in range(2, n+1):
+        is_prime = True
+        for j in range(2, i):
+            if i % j == 0:
+                is_prime = False
+                break
+        if is_prime:
+            res.append(i)
+    return res
 
-        if cnt == 0:
-            li += [i]
-    
-    print("소수 : ",  li)
-    print("1~ {} 까지 소수의 갯수 : ".format(num), len(li))
 
-isPrimeNumber(num)
+res = isPrimeNumber(n)
+s = str(res)[1:-1]
+print("소수 : ", s)
+print("1 ~ {}까지 소수의 갯수 : {}".format(n, len(res)))
